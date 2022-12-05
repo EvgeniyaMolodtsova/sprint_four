@@ -1,16 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-
 public class OrderPageScooter {
-
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public OrderPageScooter(WebDriver driver) {
         this.driver = driver;
@@ -18,51 +11,48 @@ public class OrderPageScooter {
 
     // ожидание загрузки формы заказа
     public void waitForOrderForm() {
-        new WebDriverWait(driver, 10).until(driver -> (driver.findElement(By.className("Order_Header__BZXOb")).getText() != null
-                && !driver.findElement(By.className("Order_Header__BZXOb")).getText().isEmpty()
-        ));
+        new WebDriverWait(driver, 10).until(driver -> (driver.findElement(By.className("Order_Header__BZXOb")).getText() != null && !driver.findElement(By.className("Order_Header__BZXOb")).getText().isEmpty()));
     }
 
-
     // поле "Имя"
-    private By orderName = By.xpath(".//input[@placeholder='* Имя']");
+    private final By orderName = By.xpath(".//input[@placeholder='* Имя']");
 
     // поле "Фамилия"
-    private By orderLastName = By.xpath(".//input[@placeholder='* Фамилия']");
+    private final By orderLastName = By.xpath(".//input[@placeholder='* Фамилия']");
 
     // поле "Адрес"
-    private By orderAddress = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
+    private final By orderAddress = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
 
     // поле "Метро"
-    private By orderMetroStation = By.xpath(".//input[@placeholder='* Станция метро']");
+    private final By orderMetroStation = By.xpath(".//input[@placeholder='* Станция метро']");
 
     // поле "Номер телефона"
-    private By orderUserPhoneNumber = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
+    private final By orderUserPhoneNumber = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
 
     // поле "Дата, когда привезти самокат"
-    private By orderDate = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
+    private final By orderDate = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
 
     // поле "длительность аренды"
-    private By leaseDuration = By.className("Dropdown-arrow");
+    private final By leaseDuration = By.className("Dropdown-arrow");
 
     // кнопка "Далее"
-    private By buttonNext = By.className("Button_Middle__1CSJM");
+    private final By buttonNext = By.className("Button_Middle__1CSJM");
 
     // кнопка "Закать" после введения данных
-    private By buttonOrder = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
+    private final By buttonOrder = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
     // кнопка согласия с куками
-    private By buttonCook = By.className("App_CookieButton__3cvqF");
+    private final By buttonCook = By.className("App_CookieButton__3cvqF");
 
     // кнопка "Да" для завершения заказа
-    private By buttonYes = By.xpath(".//button[text()='Да']");
+    private final By buttonYes = By.xpath(".//button[text()='Да']");
 
     // заголовок окна успешного завершения заказа
-    private By successfulOrder = By.xpath(".//div[text()='Заказ оформлен']");
+    private final By successfulOrder = By.xpath(".//div[text()='Заказ оформлен']");
 
-   public void setUserName(String username) {
-       driver.findElement(orderName).sendKeys(username);
-   }
+    public void setUserName(String username) {
+        driver.findElement(orderName).sendKeys(username);
+    }
 
     public void setLastName(String userLastName) {
         driver.findElement(orderLastName).sendKeys(userLastName);
@@ -94,12 +84,12 @@ public class OrderPageScooter {
     }
 
     public void fillOrderForm(String username, String userLastName, String userOrderAddress, String userMetroStation, String userPhoneNumber) {
-       setUserName(username);
-       setLastName(userLastName);
-       setOrderAddress(userOrderAddress);
-       setMetroStation(userMetroStation);
-       setPhoneNumber(userPhoneNumber);
-       clickToButtonNext();
+        setUserName(username);
+        setLastName(userLastName);
+        setOrderAddress(userOrderAddress);
+        setMetroStation(userMetroStation);
+        setPhoneNumber(userPhoneNumber);
+        clickToButtonNext();
     }
 
     public void setOrderDate(String date) {
@@ -120,7 +110,6 @@ public class OrderPageScooter {
         driver.findElement(buttonYes).click();
     }
 
-
     public void fillRentForm(String date, String duration) {
         setOrderDate(date);
         setLeaseDuration(duration);
@@ -129,5 +118,4 @@ public class OrderPageScooter {
         orderIsSuccessful();
 
     }
-
 }

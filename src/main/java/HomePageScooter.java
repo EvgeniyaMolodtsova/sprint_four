@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePageScooter {
     private WebDriver driver;
+
     // кнопка "Заказать" в шапке страницы
     private By orderHeaderButton = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[@class='Button_Button__ra12g']");
 
@@ -76,8 +77,6 @@ public class HomePageScooter {
 
         Assert.assertEquals(expectedText, text);
     }
-
-
 
     public void checkImportantQuestions() {
         scrollToImportantQuestions();
